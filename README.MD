@@ -1,6 +1,9 @@
+# chicodagua
+Chico D'Água - Software para Estimativa Diária da Evapotranspiração (ETo) para o Estado de Alagoas
+
 O que você precisa está na pasta que este arquivo se encontra. Deixe-me apresentar:
 
-"Chico d'Água - doc.pdf" -> este arquivo descreve o problema que está sendo resolvido com o app, 
+Na pasta doc, "Chico d'Água - doc.pdf" -> este arquivo descreve o problema que está sendo resolvido com o app, 
 além de especificar os requisitos para o devido desenvolvimento
 e funcionamento do app. Nele também é especificado as ferramentas que foram utilizados
 até este momento, e explicações especificas de algumas bibliotecas. 
