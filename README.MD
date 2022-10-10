@@ -1,4 +1,4 @@
-# chicodagua
+# Chico D'água
 Chico D'Água - Software para Estimativa Diária da Evapotranspiração (ETo) para o Estado de Alagoas
 
 O que você precisa está na pasta que este arquivo se encontra. Deixe-me apresentar:
