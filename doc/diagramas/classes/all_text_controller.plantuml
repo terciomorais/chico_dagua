@@ -1,0 +1,143 @@
+@startuml
+set namespaceSeparator ::
+skinparam classAttributeIconSize 0
+
+class "chico_dagua::aux::data_stuff.dart::DataStuff"{
+  {static} +DataStuff dt
+  -Map<String, int> _ids
+  -List<List<double>> _cfts
+  -Map<String, int> _cults
+  -Map<String, int> _stages
+  -List<List<double>> _cultsKc
+  +List history
+  +void clearHistory()
+  +int getCityId(String city)
+  +String getCityName(int id)
+  +double getCfts(int idCity, String cfts)
+  +List getAllCftsCity(int idCity)
+  +dynamic getCityKeys()
+  +double getCultKc(int cult, int stageCult)
+  +dynamic getCultKeys()
+  +dynamic getStageKeys()
+  +int getCultId(String cultName)
+  +String getCultName(int id)
+  +int getStageId(String stageName)
+  +String getStageName(int id)
+  +bool hasBetterCfts(String cityName)
+  +List getDefaultCfts()
+  +Future getFile({bool isHistory})
+  +Future saveData(List listData, {bool isHistory})
+  +Future readData({bool isHistory})
+}
+
+"chico_dagua::aux::data_stuff.dart::DataStuff" o-- "chico_dagua::aux::data_stuff.dart::DataStuff"
+
+class "chico_dagua::ui::session_flow::kc_page.dart::KcPage" {
+  +_KcPageState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-up- "chico_dagua::ui::session_flow::kc_page.dart::KcPage"
+
+class "chico_dagua::ui::session_flow::kc_page.dart::_KcPageState" {
+  {static} +DataStuff ds
+  {static} +String dropdownValue
+  +TextEditingController kcController
+  +bool manualKc
+  +Widget build(BuildContext context)
+  +double getETc(double eto, double kc)
+}
+
+"chico_dagua::ui::session_flow::kc_page.dart::_KcPageState" o-- "chico_dagua::aux::data_stuff.dart::DataStuff"
+"chico_dagua::ui::session_flow::kc_page.dart::_KcPageState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"flutter::src::widgets::framework.dart::State<T>" <|-up- "chico_dagua::ui::session_flow::kc_page.dart::_KcPageState"
+
+class "chico_dagua::ui::session_flow::kc_page_alt.dart::KcPageAlt" {
+  +_KcPageAltState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-up- "chico_dagua::ui::session_flow::kc_page_alt.dart::KcPageAlt"
+
+class "chico_dagua::ui::session_flow::kc_page_alt.dart::_KcPageAltState" {
+  {static} +DataStuff ds
+  {static} +String dropdownValue
+  +TextEditingController altKcController
+  +Widget build(BuildContext context)
+  +double getETc(double eto, double kc)
+}
+
+"chico_dagua::ui::session_flow::kc_page_alt.dart::_KcPageAltState" o-- "chico_dagua::aux::data_stuff.dart::DataStuff"
+"chico_dagua::ui::session_flow::kc_page_alt.dart::_KcPageAltState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"flutter::src::widgets::framework.dart::State<T>" <|-up- "chico_dagua::ui::session_flow::kc_page_alt.dart::_KcPageAltState"
+
+class "chico_dagua::ui::session_flow::eto_page.dart::EToPage" {
+  +_EToPageState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-down- "chico_dagua::ui::session_flow::eto_page.dart::EToPage"
+
+class "chico_dagua::ui::session_flow::eto_page.dart::_EToPageState" {
+  {static} +DataStuff ds
+  +TextEditingController tMaxController
+  +TextEditingController tMinController
+  -GlobalKey<FormState> _formKey
+  +Widget build(BuildContext context)
+  -Widget _tempInputBox(TextEditingController controller, String label)
+  +int ordinalDay(int year, int month, int day)
+  +double calcDistanceEarthSun(int julianDay)
+  +double calcPsychometricConstD(int julianDay)
+  +double calcPsychometricConstJ(int julianDay)
+  +double calcSunsetAngle(double d, double j)
+  +double calcSolarRadExt(double dr, double d, double j, double ws)
+  +double resETo(String cityName, double tMax, double tMin)
+}
+
+"chico_dagua::ui::session_flow::eto_page.dart::_EToPageState" o-- "chico_dagua::aux::data_stuff.dart::DataStuff"
+"chico_dagua::ui::session_flow::eto_page.dart::_EToPageState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"chico_dagua::ui::session_flow::eto_page.dart::_EToPageState" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+"flutter::src::widgets::framework.dart::State<T>" <|-down- "chico_dagua::ui::session_flow::eto_page.dart::_EToPageState"
+
+class "chico_dagua::ui::initial_flow::irr_query.dart::IrrQuery" {
+  +_IrrQueryState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-down- "chico_dagua::ui::initial_flow::irr_query.dart::IrrQuery"
+
+class "chico_dagua::ui::initial_flow::irr_query.dart::_IrrQueryState" {
+  {static} +String dropdownValue
+  {static} +DataStuff ds
+  +TextEditingController vazController
+  +TextEditingController espGotController
+  +TextEditingController espLinController
+  -GlobalKey<FormState> _formKey2
+  +Widget build(BuildContext context)
+  -Widget _tempInputBox(String label, String suffix, TextEditingController controller)
+  -Widget _tempQuestionBox(String question)
+}
+
+"chico_dagua::ui::initial_flow::irr_query.dart::_IrrQueryState" o-- "chico_dagua::aux::data_stuff.dart::DataStuff"
+"chico_dagua::ui::initial_flow::irr_query.dart::_IrrQueryState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"chico_dagua::ui::initial_flow::irr_query.dart::_IrrQueryState" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+"flutter::src::widgets::framework.dart::State<T>" <|-down- "chico_dagua::ui::initial_flow::irr_query.dart::_IrrQueryState"
+
+class "chico_dagua::ui::initial_flow::cult_query.dart::CultQuery" {
+  +_CultQueryState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-up- "chico_dagua::ui::initial_flow::cult_query.dart::CultQuery"
+
+class "chico_dagua::ui::initial_flow::cult_query.dart::_CultQueryState" {
+  {static} +String dropdownValue
+  {static} +DataStuff ds
+  +TextEditingController espCultController
+  +TextEditingController otherCultController
+  -GlobalKey<FormState> _formKey
+  +Widget build(BuildContext context)
+  -Widget _tempQuestionBox(String question)
+}
+
+"chico_dagua::ui::initial_flow::cult_query.dart::_CultQueryState" o-- "chico_dagua::aux::data_stuff.dart::DataStuff"
+"chico_dagua::ui::initial_flow::cult_query.dart::_CultQueryState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"chico_dagua::ui::initial_flow::cult_query.dart::_CultQueryState" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+"flutter::src::widgets::framework.dart::State<T>" <|-up- "chico_dagua::ui::initial_flow::cult_query.dart::_CultQueryState"
+
+@enduml

@@ -1,0 +1,119 @@
+@startuml
+
+set namespaceSeparator ::
+skinparam classAttributeIconSize 0
+
+class "chico_dagua::aux::data_stuff.dart::DataStuff" {
+  {static} +DataStuff dt
+  -Map<String, int> _ids
+  -List<List<double>> _cfts
+  -Map<String, int> _cults
+  -Map<String, int> _stages
+  -List<List<double>> _cultsKc
+  +List history
+  +void clearHistory()
+  +int getCityId(String city)
+  +String getCityName(int id)
+  +double getCfts(int idCity, String cfts)
+  +List getAllCftsCity(int idCity)
+  +dynamic getCityKeys()
+  +double getCultKc(int cult, int stageCult)
+  +dynamic getCultKeys()
+  +dynamic getStageKeys()
+  +int getCultId(String cultName)
+  +String getCultName(int id)
+  +int getStageId(String stageName)
+  +String getStageName(int id)
+  +bool hasBetterCfts(String cityName)
+  +List getDefaultCfts()
+  +Future getFile({bool isHistory})
+  +Future saveData(List listData, {bool isHistory})
+  +Future readData({bool isHistory})
+}
+
+"chico_dagua::aux::data_stuff.dart::DataStuff" o-- "chico_dagua::aux::data_stuff.dart::DataStuff"
+
+class "chico_dagua::ui::session_flow::result_page.dart::ResultPage" {
+  +_ResultPageState createState()
+}
+
+"chico_dagua::ui::session_flow::result_page.dart::ResultPage" -up-|> "flutter::src::widgets::framework.dart::StatefulWidget"
+
+class "chico_dagua::ui::session_flow::result_page.dart::_ResultPageState" {
+  +DataStuff ds
+  +Widget build(BuildContext context)
+  +int timeIrrig(double etc, double El, double Ep, double Eem, double q)
+  +String formatTime(int time)
+  +Map entryHistory(String data, String cult, String stage, int mins, double et0)
+}
+
+"chico_dagua::ui::session_flow::result_page.dart::_ResultPageState" o-- "chico_dagua::aux::data_stuff.dart::DataStuff"
+"chico_dagua::ui::session_flow::result_page.dart::_ResultPageState" -up-|> "flutter::src::widgets::framework.dart::State<T>"
+
+class "chico_dagua::ui::home_page.dart::HomePage" {
+  +_HomePageState createState()
+}
+
+"chico_dagua::ui::home_page.dart::HomePage" -up-|> "flutter::src::widgets::framework.dart::StatefulWidget"
+
+class "chico_dagua::ui::home_page.dart::_HomePageState" {
+  {static} +DataStuff ds
+  +Widget build(BuildContext context)
+  +Widget contextMenu()
+  -Widget _contextMenuTiles(String title, BuildContext context, Widget newPage)
+  -void _aboutInfo()
+}
+
+"chico_dagua::ui::home_page.dart::_HomePageState" o-- "chico_dagua::aux::data_stuff.dart::DataStuff"
+"chico_dagua::ui::home_page.dart::_HomePageState" -up-|> "flutter::src::widgets::framework.dart::State<T>"
+
+class "chico_dagua::ui::cult_select_page.dart::CultSelectPage" {
+  +_CultSelectPageState createState()
+}
+
+"chico_dagua::ui::cult_select_page.dart::CultSelectPage" -down-|> "flutter::src::widgets::framework.dart::StatefulWidget"
+
+class "chico_dagua::ui::cult_select_page.dart::_CultSelectPageState" {
+  {static} +DataStuff ds
+  +List allCults
+  +Widget build(BuildContext context)
+  +Widget hasNone()
+  +Widget hasSome(List cults)
+  +Widget cultCard(int index, Map cultEntry)
+  +Widget infoCel(String info, double value, String measure)
+}
+
+"chico_dagua::ui::cult_select_page.dart::_CultSelectPageState" o-- "chico_dagua::aux::data_stuff.dart::DataStuff"
+"chico_dagua::ui::cult_select_page.dart::_CultSelectPageState" -down-|> "flutter::src::widgets::framework.dart::State<T>"
+
+class "chico_dagua::ui::history_page.dart::HistoryPage" {
+  +_HistoryPageState createState()
+}
+
+"chico_dagua::ui::history_page.dart::HistoryPage" -right-|> "flutter::src::widgets::framework.dart::StatefulWidget"
+
+class "chico_dagua::ui::history_page.dart::_HistoryPageState" {
+  {static} +DataStuff ds
+  +Widget build(BuildContext context)
+  +Widget hasNone()
+  +Widget hasSome(List history)
+  +Widget histCard(int index, Map histEntry)
+  +String formatTime(int time)
+}
+
+"chico_dagua::ui::history_page.dart::_HistoryPageState" o-- "chico_dagua::aux::data_stuff.dart::DataStuff"
+"chico_dagua::ui::history_page.dart::_HistoryPageState" -right-|> "flutter::src::widgets::framework.dart::State<T>"
+
+class "chico_dagua::ui::work_page.dart::WorkPage" {
+  +_WorkPageState createState()
+}
+
+"chico_dagua::ui::work_page.dart::WorkPage" -down-|> "flutter::src::widgets::framework.dart::StatefulWidget"
+
+class "chico_dagua::ui::work_page.dart::_WorkPageState" {
+  +Widget build(BuildContext context)
+  +Widget start()
+}
+
+"chico_dagua::ui::work_page.dart::_WorkPageState" -down-|> "flutter::src::widgets::framework.dart::State<T>"
+@enduml

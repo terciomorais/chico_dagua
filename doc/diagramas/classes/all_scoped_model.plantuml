@@ -1,0 +1,68 @@
+@startuml
+set namespaceSeparator ::
+skinparam classAttributeIconSize 0
+
+class "chico_dagua::model::session_model.dart::SessionModel" {
+  -bool _hasCity
+  -int _cityId
+  -String _city
+  -String _state
+  -double _lat
+  -int _cultId
+  -String _cultName
+  -double _Ep
+  -double _q
+  -double _Eem
+  -double _El
+  +bool hasCity
+  +int cityId
+  +double El
+  +String city
+  +String state
+  +double lat
+  +double Eem
+  +double q
+  +double Ep
+  +int cultId
+  +String cultName
+  {static} +SessionModel of(BuildContext context)
+  +void setCityState(bool value)
+  +void setCityId(int value)
+  +void setCity(String cityName)
+  +void setState(String stateName)
+  +void setLat(double lat)
+  +void setEl(double value)
+  +void setEem(double value)
+  +void setq(double value)
+  +void setEp(double value)
+  +void setCultId(int value)
+  +void setCultName(String value)
+  +List toList()
+}
+
+"scoped_model::scoped_model.dart::Model" <|-- "chico_dagua::model::session_model.dart::SessionModel"
+
+class "chico_dagua::model::flow_model.dart::FlowModel" {
+  -double _et0
+  -double _etc
+  -String _stage
+  -double _tempMax
+  -double _tempMin
+  -double _kc
+  +String stage
+  +double etc
+  +double et0
+  +double tempMax
+  +double tempMin
+  +double kc
+  {static} +FlowModel of(BuildContext context)
+  +void setStage(String Value)
+  +void setEtc(double value)
+  +void setEt0(double value)
+  +void setTempMax(double value)
+  +void setTempMin(double value)
+  +void setKc(double value)
+}
+
+"scoped_model::scoped_model.dart::Model" <|-- "chico_dagua::model::flow_model.dart::FlowModel"
+@enduml

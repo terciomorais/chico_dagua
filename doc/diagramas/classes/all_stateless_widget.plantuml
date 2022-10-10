@@ -1,0 +1,76 @@
+@startuml
+set namespaceSeparator ::
+skinparam classAttributeIconSize 0
+
+class "chico_dagua::main.dart::NewOne" {
+  {static} +DataStuff ds
+  +Widget build(BuildContext context)
+}
+
+"chico_dagua::main.dart::NewOne" o-- "chico_dagua::aux::data_stuff.dart::DataStuff"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-down- "chico_dagua::main.dart::NewOne"
+
+class "chico_dagua::aux::data_stuff.dart::DataStuff" {
+  {static} +DataStuff dt
+  -Map<String, int> _ids
+  -List<List<double>> _cfts
+  -Map<String, int> _cults
+  -Map<String, int> _stages
+  -List<List<double>> _cultsKc
+  +List history
+  +void clearHistory()
+  +int getCityId(String city)
+  +String getCityName(int id)
+  +double getCfts(int idCity, String cfts)
+  +List getAllCftsCity(int idCity)
+  +dynamic getCityKeys()
+  +double getCultKc(int cult, int stageCult)
+  +dynamic getCultKeys()
+  +dynamic getStageKeys()
+  +int getCultId(String cultName)
+  +String getCultName(int id)
+  +int getStageId(String stageName)
+  +String getStageName(int id)
+  +bool hasBetterCfts(String cityName)
+  +List getDefaultCfts()
+  +Future getFile({bool isHistory})
+  +Future saveData(List listData, {bool isHistory})
+  +Future readData({bool isHistory})
+}
+
+"chico_dagua::aux::data_stuff.dart::DataStuff" o-- "chico_dagua::aux::data_stuff.dart::DataStuff"
+
+
+class "chico_dagua::ui::cult_info_page.dart::CultInfoPage" {
+  {static} +DataStuff ds
+  +Widget build(BuildContext context)
+  -Widget _infoTitle(String title, double fontSize)
+  -Widget _infoContent(String title, double fontSize)
+}
+
+"chico_dagua::ui::cult_info_page.dart::CultInfoPage" o-- "chico_dagua::aux::data_stuff.dart::DataStuff"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-down- "chico_dagua::ui::cult_info_page.dart::CultInfoPage"
+
+
+
+class "chico_dagua::ui::initial_flow::first_use_page.dart::FirstUsePage" {
+  +Widget build(BuildContext context)
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-up- "chico_dagua::ui::initial_flow::first_use_page.dart::FirstUsePage"
+
+class "chico_dagua::ui::initial_flow::loc_perm_page.dart::LocPermPage" {
+  +DataStuff ds
+  +Widget build(BuildContext context)
+}
+
+"chico_dagua::ui::initial_flow::loc_perm_page.dart::LocPermPage" o-- "chico_dagua::aux::data_stuff.dart::DataStuff"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-down- "chico_dagua::ui::initial_flow::loc_perm_page.dart::LocPermPage"
+
+class "chico_dagua::ui::initial_flow::pos_loc_pre_cult.dart::PosLocPreCult" {
+  +Widget build(BuildContext context)
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-up- "chico_dagua::ui::initial_flow::pos_loc_pre_cult.dart::PosLocPreCult"
+
+@enduml
